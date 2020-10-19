@@ -1,8 +1,8 @@
-# This is the script for Exercise 8
+# Guess the Number
+# This is a game where the user has to guess what number the computer is thinking
+# which is between 1 and 100.
 # October 23, 2020
 # Laura Carroll
-
-### 1 - Make a graph that shows how the two teams scored throughout a basketball game
 
 ### 2 - Make "guess my number" which limits the guesses to just 10.
 ## Generate the random number
@@ -20,7 +20,7 @@ userguess <- readline(prompt = "Guess: ")
 # Create a for loop that tests userguess
 for (i in 1:10){
   if (userguess == numguess){
-    print("Congratulations! You got it!)")
+    print("Congratulations! You got it!")
   } else if (userguess > numguess){
     print("Lower")
     userguess <- readline(prompt = "Guess: ")
