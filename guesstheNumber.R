@@ -7,16 +7,11 @@
 ### 2 - Make "guess my number" which limits the guesses to just 10.
 ## Generate the random number
 numguess <- floor(runif(1, min = 1, max = 100))
-
-## Receive input from the user
-# This resets userguess in case someone wanted to run this script multiple times
+# Receive input from the user
 userguess <- 0
-# This prints out the beginning statement to let the user know what is happening
-print("I'm thinking of a number between 1 and 100...")
 # This gives the user a prompt and stores the user's input as a variable
-userguess <- readline(prompt = "Guess: ")
-
-## Feedback for the User on whether their number guess is correct
+userguess <- readline(prompt = "I'm thinking of a number between 1 and 100. Guess: ")
+# Feedback for the User on whether their number guess is correct
 # Create a for loop that tests userguess
 for (i in 1:10){
   if (userguess == numguess){
