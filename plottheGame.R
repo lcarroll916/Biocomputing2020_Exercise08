@@ -14,32 +14,26 @@ gameScores <- read.delim("UWvMSU_1-22-13.txt", header = TRUE)
 # This pulls out the times that each time scored and how many points each basket was
 UWScore <- gameScores[gameScores$team == "UW", ]
 MSUScore <- gameScores[gameScores$team == "MSU", ]
-# This creates a new column in the team data frames to be used for finding the 
-#running score for each team
-UWVec <- numeric(length = nrow(UWScore))
-UWScore$OverallScore <- UWVec
-MSUVec <- numeric(length = nrow(MSUScore))
-MSUScore$OverallScore <- MSUVec
 
 # Step 3: Fill in the running score
+# This creates the empty vectors for the running score to be added to
+UWoverall <- numeric(length = nrow(UWScore))
+MSUoverall <- numeric(length = nrow(MSUScore))
 # This goes through and sums up the running score for each time the teams score
 for (i in 1:nrow(UWScore)){
-  UWScore$OverallScore[i] = sum(UWScore$score[1:i])
+  UWoverall[i] = sum(UWScore$score[1:i])
 }
 for (i in 1:nrow(MSUScore)){
-  MSUScore$OverallScore[i] = sum(MSUScore$score[1:i])
+  MSUoverall[i] = sum(MSUScore$score[1:i])
 }
 
 # Step 4: Make the vectors that will be used for the plotting
-# timepoints and pointchange correspond with UW data, but I changed their names
-#so that the x and y axes would be labeled with a good name
-timepoints <- c(0, UWScore$time)
-pointchange <- c(0, UWScore$OverallScore)
+# This pulls out the column that says when each team scored and puts it into a 
+#vector that can be used for plotting
+UWtimes <- c(0, UWScore$time)
 MSUtimes <- c(0, MSUScore$time)
-MSUoverall <- c(0, MSUScore$OverallScore)
-# Step 4: Plot these two lines using subsections time and OverallScore for x and y
-#respectively
-plot(timepoints, pointchange, type = 'l', col = "dark red")
+# Step 5: Plot these two lines using the times vector and overall score vectors
+plot(UWtimes, UWoverall, type = 'l', col = "dark red", main = "UW vs MSU Scores (Jan 22, 2013)", xlab = "Time (min)", ylab = "Total Points")
 # This next step plots the MSU score on the same graph as UW using the lines
 #function in R
 # The col input tells R what color to make the line
